@@ -35,13 +35,22 @@ exports.getTourById = (req, res) => {
   });
 };
 
+exports.checkBody = (req, res, next) => {
+  if (!req.body.name || !req.body.price) {
+    return res.status(400).json({
+      status: 'err',
+      message: 'Name or price missing'
+    });
+  }
+  next();
+};
+
 exports.createTour = (req, res) => {
-  //   console.log(req.body);
   const newId = tours[tours.length - 1].id + 1;
   const newTour = Object.assign({ id: newId }, req.body);
   tours.push(newTour);
   fs.writeFile(
-    `${__dirname}/dev-data/data/tours-simple.json`,
+    `${__dirname}/../dev-data/data/tours-simple.json`,
     JSON.stringify(tours),
     err => {
       res.status(201).json({
@@ -74,7 +83,7 @@ exports.updateTourById = (req, res) => {
     updatedTours.push(oldTour);
   });
   fs.writeFile(
-    `${__dirname}/dev-data/data/tours-simple.json`,
+    `${__dirname}/../dev-data/data/tours-simple.json`,
     JSON.stringify(updatedTours),
     err => {
       res.status(200).json({
@@ -102,7 +111,7 @@ exports.deleteTourById = (req, res) => {
     });
   }
   fs.writeFile(
-    `${__dirname}/dev-data/data/tours-simple.json`,
+    `${__dirname}/../dev-data/data/tours-simple.json`,
     JSON.stringify(updatedTours),
     err => {
       res.status(204).json({

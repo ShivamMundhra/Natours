@@ -7,19 +7,15 @@ const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 
 //MIDDLEWARES
-
-app.use(morgan('dev'));
+console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 app.use(express.json());
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   next();
 });
-
-// SYNCHROUNS CODE (TOP-LEVEL CODE)
-
-//ROUTES HANDLERS
-
-//ROUTERS
 
 // app.get('/api/v1/tours',getAllTours );
 // app.get('/api/v1/tours/:id', getTourById);
