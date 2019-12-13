@@ -5,7 +5,6 @@
 .prettierrc
 .eslintrc.json
 config.env
-.gitignore
 
 # testing
 
