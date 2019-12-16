@@ -4,7 +4,7 @@
   "description": "learning node,express,mongodb",
   "main": "app.js",
   "scripts": {
-    "start:dev": "nodemon server.js",
+    "start": "nodemon server.js",
     "start:prod": "SET NODE_ENV=production & nodemon server.js"
   },
   "author": "Shivam Mundhra",
@@ -25,5 +25,8 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.17.0",
     "prettier": "^1.19.1"
+  },
+  "engines": {
+    "node": ">=10.0.0"
   }
 }
