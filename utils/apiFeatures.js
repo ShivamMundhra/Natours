@@ -11,12 +11,12 @@ class APIFeaturs {
 
     //1B)ADVANCED FILTERING
     let queryStr = JSON.stringify(queryObj);
-    console.log(queryObj);
-    console.log(queryStr);
+    // console.log(queryObj);
+    // console.log(queryStr);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
 
-    console.log(queryStr);
-    console.log(JSON.parse(queryStr));
+    // console.log(queryStr);
+    // console.log(JSON.parse(queryStr));
     this.query = this.query.find(JSON.parse(queryStr));
     return this;
   }
