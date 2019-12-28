@@ -1,6 +1,8 @@
 /*eslint-disable*/
+import axios from 'axios';
+import { showAlert } from './alert';
 
-const login = async (email, password) => {
+export const login = async (email, password) => {
   try {
     const res = await axios({
       method: 'POST',
@@ -10,15 +12,28 @@ const login = async (email, password) => {
         password
       }
     });
-    console.log(res);
+    if (res.data.status === 'success') {
+      showAlert('success', 'Logged in Successfully');
+      window.setTimeout(() => {
+        location.assign('/');
+      }, 1000);
+    }
   } catch (error) {
-    console.log(error.response.data);
+    showAlert('error', error.response.data.message);
   }
 };
 
-document.querySelector('.form').addEventListener('submit', e => {
-  e.preventDefault();
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  login(email, password);
-});
+export const logout = async () => {
+  try {
+    const res = await axios({
+      method: 'GET',
+      url: 'http://127.0.0.1:8000/api/v1/users/logout'
+    });
+    if (res.data.status === 'success')
+      window.setTimeout(() => {
+        location.assign('/');
+      }, 1000);
+  } catch (error) {
+    showAlert('error', 'LogOut Failed Try Again');
+  }
+};

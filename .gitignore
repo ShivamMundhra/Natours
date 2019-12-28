@@ -4,6 +4,7 @@
 /node_modules
 .prettierrc
 .eslintrc.json
+.cache
 config.env
 
 # testing

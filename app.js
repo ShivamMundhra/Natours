@@ -27,10 +27,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 //MIDDLEWARES
 app.use(helmet());
 
-if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'));
-}
-
+// if (process.env.NODE_ENV === 'development') {
+//   app.use(morgan('dev'));
+// }
+app.use(morgan('dev'));
 const limiter = rateLimit({
   max: 150,
   windowMs: 60 * 60 * 1000,
@@ -40,6 +40,7 @@ const limiter = rateLimit({
 app.use('/api', limiter);
 //parse the data  then clean the data
 app.use(express.json({ limit: '10kb' }));
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser());
 //sanitize the data(NoSQL Query injection and Xss attack)
 app.use(mongoSanitize());
