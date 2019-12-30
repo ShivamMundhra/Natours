@@ -31,7 +31,7 @@ exports.uploadTourImages = upload.fields([
 ]);
 
 exports.resizeTourImages = catchAsync(async (req, res, next) => {
-  console.log(req.files);
+  //console.log(req.files);
 
   if (!req.files.imageCover || !req.files.images) return next();
 
@@ -344,7 +344,7 @@ exports.getDistances = catchAsync(async (req, res, next) => {
 exports.getMontlyPlan = catchAsync(async (req, res, next) => {
   const year = req.params.year * 1;
 
-  console.log(year);
+  //console.log(year);
   const plan = await Tour.aggregate([
     {
       $unwind: '$startDates'

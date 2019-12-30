@@ -7,6 +7,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -27,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //MIDDLEWARES
 app.use(helmet());
-
+app.use(compression());
 // if (process.env.NODE_ENV === 'development') {
 //   app.use(morgan('dev'));
 // }
