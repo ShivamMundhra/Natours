@@ -8,6 +8,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
+const cors = require('cors');
 
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -29,6 +30,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //MIDDLEWARES
+app.use(cors());
+
+app.options('*', cors());
+
 app.use(helmet());
 app.use(compression());
 // if (process.env.NODE_ENV === 'development') {
