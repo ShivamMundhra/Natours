@@ -5,7 +5,7 @@
 .prettierrc
 .eslintrc.json
 .cache
-config.env
+*.env
 
 # testing
 
