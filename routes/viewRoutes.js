@@ -15,7 +15,7 @@ router.post(
 
 router.get(
   '/',
-  bookingController.createBookingCheckout,
+  // bookingController.createBookingCheckout,
   authController.isLoggedIn,
   viewsContoller.getOverview
 );
